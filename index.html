@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+      }
+      body {
+        /* overflow: hidden; */
+        background: #333;
+      }
+      .container {
+        max-width: 100%;
+        margin: auto;
+        overflow: hidden;
+
+        position: relative;
+      }
+      img {
+        height: 100vh;
+        width: 100vw;
+      }
+      .mySlide {
+        display: none;
+      }
+      .numbertext {
+        position: absolute;
+
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.97);
+        padding: 10px;
+        border-radius: 50px;
+      }
+      .text {
+        position: absolute;
+        top: 90%;
+        font-size: 1.5rem;
+        left: 50%;
+        transform: translate(-50%, -95%);
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        border-radius: 50px;
+      }
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        margin: 10px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        transform: translate(0, -50%);
+        font-weight: bold;
+        font-size: 2rem;
+      }
+      .next {
+        right: 0%;
+      }
+      .levels {
+        top: 98%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -90%);
+      }
+      .dot {
+        transition: background-color 0.6s ease;
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .active,
+      .dot:hover {
+        background-color: #717171;
+      }
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <title>SlideShow</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 4</div>
+        <img src="./images/road.jpg" alt="" />
+        <div class="text">Caption One</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 4</div>
+        <img src="./images/tarmac.jpg" alt="" />
+        <div class="text">Caption Two</div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 4</div>
+        <img src="./images/grasslands.jpg" alt="" />
+        <div class="text">Caption Three</div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="./images/ram.jpg" alt="" />
+        <div class="text">Caption Four</div>
+      </div>
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <div class="levels" style="text-align: center;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </div>
+    <script>
+      //Manual Slide show
+      // var slideIndex = 1;
+      // showSlides(slideIndex);
+
+      // // Next/previous controls
+      // function plusSlides(n) {
+      //   showSlides((slideIndex += n));
+      // }
+
+      // // Thumbnail image controls
+      // function currentSlide(n) {
+      //   showSlides((slideIndex = n));
+      // }
+
+      // function showSlides(n) {
+      //   var i;
+      //   var slides = document.getElementsByClassName("mySlides");
+      //   console.log(slides);
+      //   var dots = document.getElementsByClassName("dot");
+      //   console.log(dots);
+      //   if (n > slides.length) {
+      //     slideIndex = 1;
+      //   }
+      //   if (n < 1) {
+      //     slideIndex = slides.length;
+      //   }
+      //   for (i = 0; i < slides.length; i++) {
+      //     slides[i].style.display = "none";
+      //   }
+      //   for (i = 0; i < dots.length; i++) {
+      //     dots[i].className = dots[i].className.replace(" active", "");
+      //   }
+      //   slides[slideIndex - 1].style.display = "block";
+      //   dots[slideIndex - 1].className += " active";
+      // }
+      /*-------------------------------------------------------------------------*/
+      //Automatic Slideshow
+      var slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+    </script>
+  </body>
+</html>
